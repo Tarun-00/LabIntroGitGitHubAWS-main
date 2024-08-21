@@ -13,13 +13,11 @@
     <link rel="shortcut icon" type="image/x-icon"
         href="https://canvascctb.s3.ca-central-1.amazonaws.com/account_1/attachments/95/CCTB_favicon.ico" />
 
-
 </head>
 
 <body>
 
     <div id="wrapper">
-
 
         <!-- Header -->
         <header id="header" class="shadow-xs">
@@ -60,13 +58,10 @@
                                 </a>
                             </li>
 
-
-
                         </ul>
                 </nav>
             </div>
         </header>
-
 
         <!-- CONTACT FORM -->
         <section>
@@ -76,18 +71,15 @@
                     Tell me about your dream
                 </h2>
 
-
                 <div class="row">
 
                     <div class="col-12 col-lg-8 mb-4">
 
-
-                        <form novalidate action="#" method="POST">
-
+                        <form id="contactForm" novalidate action="#" method="POST">
 
                             <div class="form-label-group mb-3">
                                 <input required placeholder="Name" id="contact_name" name="contact_name" type="text"
-                                    class="form-control">
+                                    class="form-control" minlength="5">
                                 <label for="contact_name">Name</label>
                             </div>
 
@@ -99,16 +91,15 @@
 
                             <div class="form-label-group mb-3">
                                 <input required placeholder="Phone" id="contact_phone" name="contact_phone" type="text"
-                                    class="form-control">
+                                    class="form-control" pattern="\d*">
                                 <label for="contact_phone">Phone</label>
                             </div>
 
                             <div class="form-label-group mb-4">
                                 <textarea required placeholder="Message" id="contact_message" name="contact_message"
-                                    class="form-control" rows="3"></textarea>
+                                    class="form-control" rows="3" minlength="5"></textarea>
                                 <label for="contact_message">Message</label>
                             </div>
-
 
                             <button type="submit" class="btn btn-primary btn-block">
                                 Send Message
@@ -116,10 +107,7 @@
 
                         </form>
 
-
-
                     </div>
-
 
                     <div class="col-12 col-lg-4 mb-4">
 
@@ -142,9 +130,7 @@
 
                         </div>
 
-
                         <div class="d-flex mt-4">
-
 
                             <div>
                                 <h3 class="h4 font-weight-normal">
@@ -158,9 +144,7 @@
 
                         </div>
 
-
                         <div class="d-flex mt-4">
-
 
                             <div>
                                 <h3 class="h4 font-weight-normal">
@@ -185,8 +169,6 @@
             </div>
         </section>
         <!-- /CONTACT FORM -->
-
-
 
         <!-- Footer -->
         <footer id="footer" class="bg-gray-900 text-white">
@@ -219,12 +201,49 @@
             <!-- line divider -->
             <hr class="bg-gray-500 my-0 container">
 
-
-
         </footer>
         <!-- /Footer -->
 
     </div><!-- /#wrapper -->
+
+    <!-- JavaScript validation -->
+    <script>
+    document.getElementById('contactForm').addEventListener('submit', function(event) {
+        var name = document.getElementById('contact_name').value;
+        var email = document.getElementById('contact_email').value;
+        var phone = document.getElementById('contact_phone').value;
+        var message = document.getElementById('contact_message').value;
+
+        var errors = [];
+
+        // Name validation
+        if (name.length < 5) {
+            errors.push("Name must be at least 5 characters long.");
+        }
+
+        // Email validation
+        var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(email)) {
+            errors.push("Please enter a valid email address.");
+        }
+
+        // Phone validation
+        var phonePattern = /^\d+$/;
+        if (!phonePattern.test(phone)) {
+            errors.push("Phone number must contain only numbers.");
+        }
+
+        // Message validation
+        if (message.length < 5) {
+            errors.push("Message must be at least 5 characters long.");
+        }
+
+        if (errors.length > 0) {
+            alert(errors.join("\n"));
+            event.preventDefault(); // Prevent form submission
+        }
+    });
+    </script>
 
 </body>
 

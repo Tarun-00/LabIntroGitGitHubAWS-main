@@ -74,11 +74,31 @@ CCTB - College
 
         <!-- QUOTE -->
         <div class="container py-5 mt-5">
+            <script>
+                // Function to prompt the user and display the result
+                function promptProgrammingLanguage() {
+                    // Prompt the user for their preferred programming language
+                    const language = prompt("Please enter your preferred programming language:");
+        
+                    // Get the paragraph element to display the result
+                    const resultElement = document.getElementById("result");
+        
+                    // Check if a language was entered and display it
+                    if (language) {
+                        resultElement.textContent = " " + language;
+                    } else {
+                        resultElement.textContent = "You did not enter a programming language.";
+                    }
+                }
+        
+                // Call the function when the page loads
+                window.onload = promptProgrammingLanguage;
+            </script>
 
 
 
             <blockquote class="blockquote text-center">
-                <h1 class="mb-5 text-danger">{{User's favorite programming language}}</h1>
+                <h1 class="mb-5 text-danger", id="result"></h1>
 
                 <p class="h1 col-10 col-lg-7 m-auto fst-italic text-muted">
                     IST 107 - Introduction to Internet Programming and Web Applications.
